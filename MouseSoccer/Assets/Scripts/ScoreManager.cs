@@ -2,14 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 public enum Team {  Blue, Red }
 
-public class ScoreManager : MonoBehaviour 
+public class ScoreManager : NetworkBehaviour 
 {
     public static ScoreManager score_manager;
     public Text score_text;
+
+    [SyncVar]
     public int blue_score;
+    [SyncVar]
     public int red_score;
 
 

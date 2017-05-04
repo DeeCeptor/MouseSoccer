@@ -13,9 +13,17 @@ public class WarpToMouse : NetworkBehaviour
 	{
         physics = this.GetComponent<Rigidbody2D>();
     }
-	
 
-	void Update () 
+
+    public override void OnStartLocalPlayer()
+    {
+        base.OnStartLocalPlayer();
+
+        // Do stuff to this local 
+    }
+
+
+    void Update () 
 	{
         if (!isLocalPlayer)
             return;

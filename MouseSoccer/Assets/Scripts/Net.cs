@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class Net : MonoBehaviour
+public class Net : NetworkBehaviour
 {
     public Team teams_goal;    // Blue or red
 
@@ -21,6 +22,9 @@ public class Net : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (!isServer)
+            return;
+
         if (other.tag == "Ball")
         {
             switch (teams_goal)

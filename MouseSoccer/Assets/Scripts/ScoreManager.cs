@@ -25,11 +25,17 @@ public class ScoreManager : NetworkBehaviour
 
     public void BlueScored(int amount)
     {
+        if (!isServer)
+            return;
+
         blue_score += amount;
         Debug.Log("Blue scored " + amount);
     }
     public void RedScored(int amount)
     {
+        if (!isServer)
+            return;
+
         red_score += amount;
         Debug.Log("Red scored " + amount);
     }

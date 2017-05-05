@@ -5,7 +5,10 @@ using UnityEngine;
 public class CameraRect : MonoBehaviour 
 {
     public static Rect camera_rect;
+    public static Rect arena_rect;
 
+    public GameObject topright;
+    public GameObject bottomleft;
 
 	void Awake () 
 	{
@@ -18,5 +21,10 @@ public class CameraRect : MonoBehaviour
             bottomLeft.y,
             topRight.x - bottomLeft.x,
             topRight.y - bottomLeft.y);
+
+        arena_rect = new Rect(bottomleft.transform.position.x,
+            bottomleft.transform.position.y,
+            topright.transform.position.x - bottomleft.transform.position.x,
+            topright.transform.position.y - bottomleft.transform.position.y);
     }
 }

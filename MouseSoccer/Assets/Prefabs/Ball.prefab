@@ -144,7 +144,7 @@ MonoBehaviour:
   m_VelocityThreshold: 0.000001
   m_SnapThreshold: 0
   m_InterpolateRotation: 1
-  m_InterpolateMovement: 0
+  m_InterpolateMovement: 1
 --- !u!212 &212157419954985038
 SpriteRenderer:
   m_ObjectHideFlags: 1

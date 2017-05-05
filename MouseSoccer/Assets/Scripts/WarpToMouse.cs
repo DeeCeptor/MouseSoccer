@@ -9,9 +9,18 @@ public class WarpToMouse : NetworkBehaviour
 
     float rotation_target;
 
-	void Start () 
+    public string team;
+
+    void Awake()
+    {
+        // Get which team we're on
+    }
+
+    void Start () 
 	{
         physics = this.GetComponent<Rigidbody2D>();
+
+        ScoreManager.score_manager.AssignTeam(this.gameObject);
     }
 
 
@@ -19,7 +28,7 @@ public class WarpToMouse : NetworkBehaviour
     {
         base.OnStartLocalPlayer();
 
-        // Do stuff to this local 
+        //ScoreManager.score_manager.player_count+
     }
 
 
@@ -45,8 +54,8 @@ public class WarpToMouse : NetworkBehaviour
 
         // Move to the mouse
         mouse_pos = new Vector2(
-            Mathf.Clamp(mouse_pos.x, CameraRect.camera_rect.xMin, CameraRect.camera_rect.xMax),
-            Mathf.Clamp(mouse_pos.y, CameraRect.camera_rect.yMin, CameraRect.camera_rect.yMax));
+            Mathf.Clamp(mouse_pos.x, CameraRect.arena_rect.xMin, CameraRect.arena_rect.xMax),
+            Mathf.Clamp(mouse_pos.y, CameraRect.arena_rect.yMin, CameraRect.arena_rect.yMax));
         physics.MovePosition(mouse_pos);
 	}
 }

@@ -428,6 +428,16 @@ Prefab:
       propertyPath: m_NetworkPort
       value: 7776
       objectReference: {fileID: 0}
+    - target: {fileID: 114583407491831294, guid: 919a9e4dce4e5a944ad2c3e5fd3122ac,
+        type: 2}
+      propertyPath: offsetX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114583407491831294, guid: 919a9e4dce4e5a944ad2c3e5fd3122ac,
+        type: 2}
+      propertyPath: offsetY
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 919a9e4dce4e5a944ad2c3e5fd3122ac, type: 2}
   m_IsPrefabParent: 0

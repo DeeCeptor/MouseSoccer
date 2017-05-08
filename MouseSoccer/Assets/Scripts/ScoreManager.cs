@@ -99,4 +99,16 @@ public class ScoreManager : NetworkBehaviour
     {
         score_text.text = "Score: <color=blue>" + blue_score + "</color> : <color=red>" + red_score + "</color>";
     }
+
+
+    void OnGUI()
+    {
+        GUILayout.Label("Player ping values");
+        int i = 0;
+        while (i < Network.connections.Length)
+        {
+            GUILayout.Label("Player " + Network.connections[i] + " - " + Network.GetAveragePing(Network.connections[i]) + " ms");
+            i++;
+        }
+    }
 }

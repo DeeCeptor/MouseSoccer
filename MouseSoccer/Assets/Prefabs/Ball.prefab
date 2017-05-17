@@ -23,9 +23,8 @@ GameObject:
   - component: {fileID: 58324065349425196}
   - component: {fileID: 114308135683727062}
   - component: {fileID: 114976308477813674}
-  - component: {fileID: 114913507230910858}
   - component: {fileID: 212157419954985038}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ball
   m_TagString: Ball
   m_Icon: {fileID: 0}
@@ -63,7 +62,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: 02318784cbf8c104c978b0fc36afa8fe, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &58324065349425196
 CircleCollider2D:
@@ -112,18 +111,6 @@ MonoBehaviour:
     i15: 216
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &114913507230910858
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1390166779947216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -837897634, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_VisualizerPrefab: {fileID: 0}
 --- !u!114 &114976308477813674
 MonoBehaviour:
   m_ObjectHideFlags: 1

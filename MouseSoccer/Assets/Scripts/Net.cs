@@ -22,19 +22,16 @@ public class Net : NetworkBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-
         if (other.tag == "Ball")
         {
-            Effects();
-
             if (!isServer)
                 return;
 
             StartCoroutine(GoalScored(other));
         }
     }
-
-    public void Effects()
+    [ClientRpc]
+    public void RpcEffects()
     {
         this.GetComponentInChildren<ParticleSystem>().Play();
 
@@ -55,6 +52,8 @@ public class Net : NetworkBehaviour
                 ScoreManager.score_manager.BlueScored(1);
                 break;
         }
+
+        RpcEffects();
 
         // Respawn the ball after a second
         other.gameObject.SetActive(false);

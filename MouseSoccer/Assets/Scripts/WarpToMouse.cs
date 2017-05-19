@@ -9,6 +9,7 @@ public class WarpToMouse : NetworkBehaviour
 
     float rotation_target;
 
+    public bool move_using_rigidbody = true;
     public string team;
 
     void Awake()
@@ -56,6 +57,10 @@ public class WarpToMouse : NetworkBehaviour
         mouse_pos = new Vector2(
             Mathf.Clamp(mouse_pos.x, CameraRect.arena_rect.xMin, CameraRect.arena_rect.xMax),
             Mathf.Clamp(mouse_pos.y, CameraRect.arena_rect.yMin, CameraRect.arena_rect.yMax));
-        physics.MovePosition(mouse_pos);
+
+        if (move_using_rigidbody)
+            physics.MovePosition(mouse_pos);
+        else
+            transform.position = mouse_pos;
 	}
 }

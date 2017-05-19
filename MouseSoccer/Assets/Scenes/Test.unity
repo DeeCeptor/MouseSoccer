@@ -4339,7 +4339,12 @@ Prefab:
     - target: {fileID: 114976308477813674, guid: ac1cfd4065694dc4aadad45ea3d854d8,
         type: 2}
       propertyPath: m_InterpolateMovement
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114976308477813674, guid: ac1cfd4065694dc4aadad45ea3d854d8,
+        type: 2}
+      propertyPath: m_TransformSyncMode
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ac1cfd4065694dc4aadad45ea3d854d8, type: 2}
@@ -7866,6 +7871,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2008962114 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1390166779947216, guid: ac1cfd4065694dc4aadad45ea3d854d8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1320444754}
+--- !u!114 &2008962121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2008962114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b1f6139784e4554a9f774d7e715360c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lerp_speed: 0.5
+  create_only_if_not_local: 1
 --- !u!1 &2036990704
 GameObject:
   m_ObjectHideFlags: 0

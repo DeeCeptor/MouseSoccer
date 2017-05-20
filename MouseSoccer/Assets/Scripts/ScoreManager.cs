@@ -83,6 +83,19 @@ public class ScoreManager : NetworkBehaviour
     }
 
 
+    [Command]
+    public void CmdReset()
+    {
+        blue_score = 0;
+        red_score = 0;
+        GameObject[] balls = GameObject.FindGameObjectsWithTag("Ball");
+        foreach (GameObject go in balls)
+        {
+            go.transform.position = Vector3.zero;
+        }
+    }
+
+
     void OnPlayerConnected(NetworkPlayer player)
     {
         player_count++;
@@ -97,6 +110,9 @@ public class ScoreManager : NetworkBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+            CmdReset();
+
         score_text.text = "Score: <color=blue>" + blue_score + "</color> : <color=red>" + red_score + "</color>";
     }
 

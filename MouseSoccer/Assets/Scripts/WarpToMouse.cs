@@ -10,18 +10,16 @@ public class WarpToMouse : NetworkBehaviour
     float rotation_target;
 
     public bool move_using_rigidbody = true;
-    public string team;
+
 
     void Awake()
     {
-        // Get which team we're on
+
     }
 
     void Start () 
 	{
         physics = this.GetComponent<Rigidbody2D>();
-
-        ScoreManager.score_manager.AssignTeam(this.gameObject);
     }
 
 
@@ -50,8 +48,8 @@ public class WarpToMouse : NetworkBehaviour
             if (angleDegrees > 1f || angleDegrees < -1f)
                 rotation_target = angleDegrees;
         }
-        physics.MoveRotation(Mathf.Lerp(physics.rotation, rotation_target, 0.1f));
-
+        physics.MoveRotation(Mathf.LerpAngle(physics.rotation, rotation_target, Time.deltaTime * 10));
+        //physics.MoveRotation(rotation_target);
 
         // Move to the mouse
         mouse_pos = new Vector2(

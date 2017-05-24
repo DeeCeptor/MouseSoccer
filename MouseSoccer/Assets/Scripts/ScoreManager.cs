@@ -10,6 +10,8 @@ public class ScoreManager : NetworkBehaviour
 {
     public static ScoreManager score_manager;
     public Text score_text;
+    public Text timer_text;
+    public Text server_info;
 
     [SyncVar]
     public int blue_score;
@@ -17,11 +19,21 @@ public class ScoreManager : NetworkBehaviour
     public int red_score;
     [SyncVar]
     public int player_count = 0;
+    [SyncVar]
+    public float time_remaining = 60f;
+    [SyncVar]
+    public int red_players = 0;
+    [SyncVar]
+    public int blue_players = 0;
 
+    // Dictionary of teams, and number of players on each team
     public Dictionary<string, int> players_on_teams = new Dictionary<string, int>();
 
     public Sprite blue_sprite;
     public Sprite red_sprite;
+
+    public List<Player> players = new List<Player>();
+
 
 	void Awake () 
 	{
@@ -30,6 +42,11 @@ public class ScoreManager : NetworkBehaviour
         players_on_teams.Add("Blue", 0);
         players_on_teams.Add("Red", 0);
 	}
+    private void Start()
+    {
+        //Network.Connect("127.0.0.1");
+        //Network.Disconnect();
+    }
 
 
     public void AssignTeam(GameObject new_player)
@@ -40,25 +57,29 @@ public class ScoreManager : NetworkBehaviour
         {
 
         }*/
-        if (players_on_teams["Red"] > players_on_teams["Blue"])
+        if (!isServer)
+            return;
+
+        if (red_players > blue_players)
         {
-            JoinTeam("Blue", new_player);
+            new_player.GetComponent<Player>().team = Team.Blue;
+            blue_players--;
         }
         else
-            JoinTeam("Red", new_player);
+        {
+            new_player.GetComponent<Player>().team = Team.Red;
+            red_players++;
+        }
     }
 
-    public void JoinTeam(string team_name, GameObject player)
+    public void SetPlayerColours(Team team, GameObject player)
     {
-        players_on_teams[team_name]++;
-        player.GetComponent<WarpToMouse>().team = team_name;
-
-        switch (team_name)
+        switch (team)
         {
-            case "Red":
+            case Team.Red:
                 player.GetComponent<SpriteRenderer>().sprite = red_sprite;
                 break;
-            case "Blue":
+            case Team.Blue:
                 player.GetComponent<SpriteRenderer>().sprite = blue_sprite;
                 break;
         }
@@ -105,6 +126,41 @@ public class ScoreManager : NetworkBehaviour
     {
         player_count--;
         Debug.Log("Player " + player_count + " connected from " + player.ipAddress + ":" + player.port);
+
+        // Find the player who left
+        for (int x = 0; x < players.Count; x++)
+        {
+            Player p = players[x];
+
+            if (p.network_guid == player.guid)
+            {
+                Destroy(p.gameObject);
+
+                if (isServer)
+                {
+                    switch (p.team)
+                    {
+                        case Team.Blue:
+                            blue_players--;
+                            break;
+                        case Team.Red:
+                            red_players--;
+                            break;
+                    }
+                }
+                break;
+            }
+        }
+    }
+
+
+    [Server]
+    public string ServerInfo()
+    {
+        string r = "";
+        r += "Host IP address " + Network.player.ipAddress;
+        r += ", external IP: " + Network.player.externalIP;
+        return r;
     }
 
 
@@ -114,6 +170,15 @@ public class ScoreManager : NetworkBehaviour
             CmdReset();
 
         score_text.text = "Score: <color=blue>" + blue_score + "</color> : <color=red>" + red_score + "</color>";
+
+        // Server updates
+        if (isServer)
+        {
+            time_remaining -= Time.deltaTime;
+            server_info.text = ServerInfo();
+        }
+
+        timer_text.text = "" + (int) time_remaining;
     }
 
 
@@ -126,5 +191,8 @@ public class ScoreManager : NetworkBehaviour
             GUILayout.Label("Player " + Network.connections[i] + " - " + Network.GetAveragePing(Network.connections[i]) + " ms");
             i++;
         }
+
+        if (isServer)
+            ServerInfo();
     }
 }

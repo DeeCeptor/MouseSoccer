@@ -6,7 +6,7 @@ using UnityEngine;
 public class FollowObject : MonoBehaviour
 {
     public Transform object_to_follow;
-    public float lerp_rate = 0.5f;
+    public float lerp_rate = 50f;
 
 
 	void Start ()
@@ -34,7 +34,7 @@ public class FollowObject : MonoBehaviour
     }
 
 
-	void LateUpdate ()
+	void Update ()
     {
         if (!object_to_follow)
         {
@@ -43,7 +43,8 @@ public class FollowObject : MonoBehaviour
         }
 
         // Set position and rotation based on object we're following
-        this.transform.position = Vector3.Lerp(this.transform.position, object_to_follow.transform.position, lerp_rate);
+        this.transform.position = Vector3.Lerp(this.transform.position, object_to_follow.transform.position, 0.6f);
+        //this.transform.position = Vector3.Lerp(this.transform.position, object_to_follow.transform.position, lerp_rate * Time.deltaTime);
         this.transform.rotation = object_to_follow.transform.rotation;
 	}
 }

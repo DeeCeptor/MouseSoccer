@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 212521489831537066}
   - component: {fileID: 114544527544261244}
   - component: {fileID: 58707868608996628}
+  - component: {fileID: 114207614685920320}
   m_Layer: 9
   m_Name: Player (kick ball)
   m_TagString: Player
@@ -98,6 +99,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.21, y: 0.31}
   m_Direction: 0
+--- !u!114 &114207614685920320
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1976153063274942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a03c5ff81b7c97499d7bc1a64991a75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  network_guid: 
+  team: 
 --- !u!114 &114380385601483486
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,7 +124,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   move_using_rigidbody: 0
-  team: 
 --- !u!114 &114455113082798512
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,8 +156,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1f6139784e4554a9f774d7e715360c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lerp_speed: 0.3
+  lerp_speed: 50
   create_only_if_not_local: 1
+  create_only_if_not_server: 0
 --- !u!114 &114595475303133612
 MonoBehaviour:
   m_ObjectHideFlags: 1

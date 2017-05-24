@@ -9,10 +9,11 @@ public class KickBall : NetworkBehaviour
     float cur_kick_cooldown = 0;
 
     float min_kick_force = 100f;
-    float extra_kick_force = 1000f;
+    float extra_kick_force = 150f;
 
     Vector3 prev_position;
     float mouse_delta;
+    float prev_mouse_delta;
 
     int track_prev_deltas = 5;
     Queue<float> mouse_delta_history = new Queue<float>();
@@ -26,25 +27,39 @@ public class KickBall : NetworkBehaviour
     }
 
 
-    private void Update()
+    private void FixedUpdate()
     {
-        // Remove the last mouse_delta histories
-        mouse_delta_history.Dequeue();
-
-        Vector2 mouse_d = (this.transform.position - prev_position) * (1 - Time.deltaTime);
+        Vector2 mouse_d = (this.transform.position - prev_position) * (1 / Time.fixedDeltaTime);
         mouse_d.x = Mathf.Abs(mouse_d.x);
         mouse_d.y = Mathf.Abs(mouse_d.y);
-        mouse_delta = Mathf.Clamp(mouse_d.magnitude, 0f, 1);
+        mouse_delta = mouse_d.magnitude;
+        //mouse_delta = Mathf.Clamp(mouse_d.magnitude, 0f, 1);
+        //Debug.Log(mouse_d.magnitude, this.gameObject);
 
-        // Add new mouse_delta to top of queue
-        mouse_delta_history.Enqueue(mouse_delta);
+        // Add new mouse_delta to top of queue, but skip first frame of each 0 speed
+        if (mouse_delta != 0 || (mouse_delta == 0 && prev_mouse_delta == 0))
+        {
+            if (mouse_delta_history.Count > 0)
+                mouse_delta_history.Dequeue();
+
+            mouse_delta_history.Enqueue(mouse_delta);
+        }
 
         // Gotta figure out better delta. Values are too small or non-existent
 
-        cur_kick_cooldown -= Time.deltaTime;
+        cur_kick_cooldown -= Time.fixedDeltaTime;
 
         prev_position = this.transform.position;
+        prev_mouse_delta = mouse_delta;
     }
+
+
+    private void Update()
+    {
+
+    }
+
+
     public float AverageMouseDelta()
     {
         float total = 0;
@@ -59,7 +74,10 @@ public class KickBall : NetworkBehaviour
         if (collision.tag == "Ball" && cur_kick_cooldown <= 0)
         {
             if (isLocalPlayer)
+            {
                 CmdKick(collision.gameObject, AverageMouseDelta());
+                cur_kick_cooldown = kick_cooldown;
+            }
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -67,7 +85,10 @@ public class KickBall : NetworkBehaviour
         if (collision.tag == "Ball" && cur_kick_cooldown <= 0)
         {
             if (isLocalPlayer)
+            {
                 CmdKick(collision.gameObject, AverageMouseDelta());
+                cur_kick_cooldown = kick_cooldown;
+            }
         }
     }
 
@@ -83,12 +104,15 @@ public class KickBall : NetworkBehaviour
             return;
         }
 
+        // Stop the ball
+        physics.velocity = Vector2.zero;
+
         // Figure out what direction we're kicking ball from
         Vector2 dir = (ball.transform.position - this.transform.position).normalized;
 
         // Figure out the speed with which we collided with ball
         Vector2 force = dir * min_kick_force + dir * extra_kick_force * speed;
-        Debug.Log("Kick " + dir + ":" + force + " delta:" + speed);
+        Debug.Log("Kick " + dir + ":" + force + " delta:" + speed, this.gameObject);
 
         physics.AddForce(force);
     }

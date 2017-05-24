@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114308135683727062}
   - component: {fileID: 114976308477813674}
   - component: {fileID: 212157419954985038}
+  - component: {fileID: 114714179864117410}
   m_Layer: 8
   m_Name: Ball
   m_TagString: Ball
@@ -111,6 +112,20 @@ MonoBehaviour:
     i15: 216
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &114714179864117410
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1390166779947216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b1f6139784e4554a9f774d7e715360c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lerp_speed: 0.5
+  create_only_if_not_local: 1
+  create_only_if_not_server: 1
 --- !u!114 &114976308477813674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -131,7 +146,7 @@ MonoBehaviour:
   m_VelocityThreshold: 0.000001
   m_SnapThreshold: 0
   m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
+  m_InterpolateMovement: 0
 --- !u!212 &212157419954985038
 SpriteRenderer:
   m_ObjectHideFlags: 1

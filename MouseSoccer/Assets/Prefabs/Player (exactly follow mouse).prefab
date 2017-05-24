@@ -25,6 +25,8 @@ GameObject:
   - component: {fileID: 114599309281361142}
   - component: {fileID: 114818206161550508}
   - component: {fileID: 212211591354241626}
+  - component: {fileID: 114734301420778724}
+  - component: {fileID: 114477852941370286}
   m_Layer: 0
   m_Name: Player (exactly follow mouse)
   m_TagString: Player
@@ -80,6 +82,20 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.21, y: 0.31}
   m_Direction: 0
+--- !u!114 &114477852941370286
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1291690514366434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b1f6139784e4554a9f774d7e715360c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lerp_speed: 4
+  create_only_if_not_local: 1
+  create_only_if_not_server: 0
 --- !u!114 &114599309281361142
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -112,6 +128,19 @@ MonoBehaviour:
     i15: 14
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!114 &114734301420778724
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1291690514366434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a03c5ff81b7c97499d7bc1a64991a75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  network_guid: 
+  team: 
 --- !u!114 &114818206161550508
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -144,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 293a13d2f5ed2a44d88ccc0bd30d611d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 
+  move_using_rigidbody: 1
 --- !u!212 &212211591354241626
 SpriteRenderer:
   m_ObjectHideFlags: 1

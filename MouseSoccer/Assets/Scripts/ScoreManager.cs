@@ -179,6 +179,10 @@ public class ScoreManager : NetworkBehaviour
         }
 
         timer_text.text = "" + (int) time_remaining;
+
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
     }
 
 

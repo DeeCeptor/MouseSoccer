@@ -4491,18 +4491,13 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114714179864117410, guid: ac1cfd4065694dc4aadad45ea3d854d8,
         type: 2}
-      propertyPath: lerp_speed
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 114714179864117410, guid: ac1cfd4065694dc4aadad45ea3d854d8,
-        type: 2}
-      propertyPath: create_only_if_not_local
-      value: 0
+      propertyPath: add_circle_collider
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114714179864117410, guid: ac1cfd4065694dc4aadad45ea3d854d8,
         type: 2}
       propertyPath: create_only_if_not_server
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ac1cfd4065694dc4aadad45ea3d854d8, type: 2}
@@ -4540,8 +4535,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 167, y: 41}
-  m_SizeDelta: {x: 294, y: 81}
+  m_AnchoredPosition: {x: 409.97, y: 41}
+  m_SizeDelta: {x: 780.05, y: 81}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1368397189
 MonoBehaviour:

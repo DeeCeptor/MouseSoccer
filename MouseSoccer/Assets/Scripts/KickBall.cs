@@ -75,7 +75,7 @@ public class KickBall : NetworkBehaviour
         {
             if (isLocalPlayer)
             {
-                CmdKick(collision.gameObject, AverageMouseDelta());
+                CmdKick(Ball.ball.gameObject, AverageMouseDelta());
                 cur_kick_cooldown = kick_cooldown;
             }
         }
@@ -86,7 +86,7 @@ public class KickBall : NetworkBehaviour
         {
             if (isLocalPlayer)
             {
-                CmdKick(collision.gameObject, AverageMouseDelta());
+                CmdKick(Ball.ball.gameObject, AverageMouseDelta());
                 cur_kick_cooldown = kick_cooldown;
             }
         }

@@ -9,6 +9,7 @@ public class CreateSpriteFollower : NetworkBehaviour
     public float lerp_speed = 50f;
     public bool create_only_if_not_local = true;
     public bool create_only_if_not_server = false;
+    public bool add_circle_collider = false;
 
 	void Start ()
     {
@@ -35,6 +36,14 @@ public class CreateSpriteFollower : NetworkBehaviour
         instance.layer = this.gameObject.layer;
 
         // Maybe create a collider to live on the art?
+        if (add_circle_collider)
+        {
+            CircleCollider2D original_collider = this.GetComponent<CircleCollider2D>();
+            CircleCollider2D new_collider = instance.AddComponent<CircleCollider2D>();
+            new_collider.isTrigger = original_collider.isTrigger;
+            new_collider.radius = original_collider.radius;
+            original_collider.enabled = false;
+        }
 
         Destroy(this);
     }

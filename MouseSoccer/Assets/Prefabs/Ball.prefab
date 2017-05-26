@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114976308477813674}
   - component: {fileID: 212157419954985038}
   - component: {fileID: 114714179864117410}
+  - component: {fileID: 114226074353661024}
   m_Layer: 8
   m_Name: Ball
   m_TagString: Ball
@@ -80,6 +81,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.09
+--- !u!114 &114226074353661024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1390166779947216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34228c2290984cb44adcea8c1d6b36ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114308135683727062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -123,9 +135,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1f6139784e4554a9f774d7e715360c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lerp_speed: 0.5
-  create_only_if_not_local: 1
-  create_only_if_not_server: 1
+  lerp_speed: 50
+  create_only_if_not_local: 0
+  create_only_if_not_server: 0
 --- !u!114 &114976308477813674
 MonoBehaviour:
   m_ObjectHideFlags: 1

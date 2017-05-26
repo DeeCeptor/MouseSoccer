@@ -160,6 +160,18 @@ public class ScoreManager : NetworkBehaviour
         string r = "";
         r += "Host IP address " + Network.player.ipAddress;
         r += ", external IP: " + Network.player.externalIP;
+        r += ": " + NetworkServer.connections.Count;
+
+        string s = "\nConnected players:";
+        int i = 0;
+        while (i < NetworkServer.connections.Count)
+        {
+            s += "\nPlayer " + NetworkServer.connections[i].address;
+            i++;
+        }
+        if (i > 0)
+            r += s;
+
         return r;
     }
 
@@ -188,15 +200,6 @@ public class ScoreManager : NetworkBehaviour
 
     void OnGUI()
     {
-        GUILayout.Label("Player ping values");
-        int i = 0;
-        while (i < Network.connections.Length)
-        {
-            GUILayout.Label("Player " + Network.connections[i] + " - " + Network.GetAveragePing(Network.connections[i]) + " ms");
-            i++;
-        }
 
-        if (isServer)
-            ServerInfo();
     }
 }

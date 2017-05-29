@@ -19,14 +19,21 @@ public class Player : NetworkBehaviour
     }
     private void Start()
     {
-        if (isLocalPlayer)
-            AssignNetworkInfo(Network.player);
+
 
     }
     IEnumerator Delayed_Setup()
     {
         yield return new WaitForSeconds(0f);
+
+        if (isLocalPlayer)
+            AssignNetworkInfo(Network.player);
+        /*
+        if ( string.IsNullOrEmpty(network_guid))
+            network_guid = network_player.guid;
+
         this.transform.name = network_guid;
+        */
         ScoreManager.score_manager.SetPlayerColours(team, this.gameObject);
     }
 
@@ -45,14 +52,19 @@ public class Player : NetworkBehaviour
         network_player = n_player;
 
         network_guid = network_player.guid;
+    }
 
-        this.transform.name = "Player " + network_guid;
+
+
+    private void OnDisconnectedFromServer(NetworkDisconnection info)
+    {
+        Debug.Log("Disconnected from server");
     }
 
 
 
     void Update ()
     {
-		
-	}
+        this.transform.name = "Player " + network_guid;
+    }
 }

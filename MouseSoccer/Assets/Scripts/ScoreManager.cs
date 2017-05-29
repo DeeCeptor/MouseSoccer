@@ -125,14 +125,14 @@ public class ScoreManager : NetworkBehaviour
     private void OnPlayerDisconnected(NetworkPlayer player)
     {
         player_count--;
-        Debug.Log("Player " + player_count + " connected from " + player.ipAddress + ":" + player.port);
+        Debug.Log("Player " + player_count + " disconnected from " + player.ipAddress + ":" + player.port);
 
         // Find the player who left
         for (int x = 0; x < players.Count; x++)
         {
             Player p = players[x];
 
-            if (p.network_guid == player.guid)
+            if (p != null && p.network_guid == player.guid)
             {
                 Destroy(p.gameObject);
 
@@ -160,15 +160,23 @@ public class ScoreManager : NetworkBehaviour
         string r = "";
         r += "Host IP address " + Network.player.ipAddress;
         r += ", external IP: " + Network.player.externalIP;
-        r += ": " + NetworkServer.connections.Count;
+        //r += ": " + NetworkServer.connections.Count;
 
-        string s = "\nConnected players:";
+        string s = "";
         int i = 0;
         while (i < NetworkServer.connections.Count)
         {
-            s += "\nPlayer " + NetworkServer.connections[i].address;
-            i++;
+            NetworkConnection n = NetworkServer.connections[i];
+
+            if (n != null)
+            {
+                s += "\nPlayer " + n.address;
+                i++;
+            }
+            else
+                break;
         }
+        s = "\nConnected players: " + i + s;
         if (i > 0)
             r += s;
 

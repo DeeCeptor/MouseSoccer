@@ -38,7 +38,7 @@ public class FollowObject : MonoBehaviour
     {
         if (!object_to_follow)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
             return;
         }
 

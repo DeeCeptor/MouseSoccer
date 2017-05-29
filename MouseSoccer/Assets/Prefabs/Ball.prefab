@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 212157419954985038}
   - component: {fileID: 114714179864117410}
   - component: {fileID: 114226074353661024}
+  - component: {fileID: 95499452548431614}
   m_Layer: 8
   m_Name: Ball
   m_TagString: Ball
@@ -41,7 +42,7 @@ Transform:
   m_GameObject: {fileID: 1390166779947216}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -62,8 +63,8 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: 02318784cbf8c104c978b0fc36afa8fe, type: 2}
-  m_Interpolate: 0
-  m_SleepingMode: 1
+  m_Interpolate: 2
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &58324065349425196
@@ -80,7 +81,24 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.09
+  m_Radius: 0.48
+--- !u!95 &95499452548431614
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1390166779947216}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9ab6c01c4c96b184982931e7ee77390e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114226074353661024
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -137,7 +155,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lerp_speed: 50
   create_only_if_not_local: 0
-  create_only_if_not_server: 0
+  create_only_if_not_server: 1
+  add_circle_collider: 0
 --- !u!114 &114976308477813674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -153,11 +172,11 @@ MonoBehaviour:
   m_SendInterval: 0.033333335
   m_SyncRotationAxis: 3
   m_RotationSyncCompression: 0
-  m_SyncSpin: 1
-  m_MovementTheshold: 0.000001
-  m_VelocityThreshold: 0.000001
+  m_SyncSpin: 0
+  m_MovementTheshold: 1e-20
+  m_VelocityThreshold: 1e-20
   m_SnapThreshold: 0
-  m_InterpolateRotation: 1
+  m_InterpolateRotation: 0
   m_InterpolateMovement: 0
 --- !u!212 &212157419954985038
 SpriteRenderer:
@@ -191,7 +210,7 @@ SpriteRenderer:
   m_SortingLayerID: -1253507447
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: faafc0b05c8a09040a69ac7f0926d4a7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9353e5373f42afa42b9b8760c4d2b1e0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -27,7 +27,7 @@ public class CreateSpriteFollower : NetworkBehaviour
 
     IEnumerator Delayed_Start()
     {
-        yield return 0;
+        yield return 2;
 
         Debug.Log("Creating sprite follower for " + this.transform.name, this.gameObject);
         GameObject instance = Instantiate(Resources.Load("SpriteFollower", typeof(GameObject))) as GameObject;

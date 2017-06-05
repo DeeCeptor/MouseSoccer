@@ -7,7 +7,7 @@ public class LocalSettings : MonoBehaviour
 	void Start () 
 	{
         QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = 300;
+        Application.targetFrameRate = 150;
         Debug.Log("Setting frame rate to: " + Application.targetFrameRate + ", and vSync to: " + QualitySettings.vSyncCount);
     }
 

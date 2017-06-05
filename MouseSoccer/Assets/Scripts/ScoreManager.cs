@@ -186,6 +186,15 @@ public class ScoreManager : NetworkBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Debug.Log("RTT times:" + NetworkManager.singleton.client.GetRTT());
+            foreach (NetworkClient nc in NetworkClient.allClients)
+            {
+                Debug.Log("" + nc.GetRTT(), this.gameObject);
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.R))
             CmdReset();
 

@@ -66,5 +66,7 @@ public class Player : NetworkBehaviour
     void Update ()
     {
         this.transform.name = "Player " + network_guid;
+
+        
     }
 }
